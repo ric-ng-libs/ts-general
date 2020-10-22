@@ -1,4 +1,4 @@
-import { IItem } from '../../modeles/_interfaces/IItem';
+import { IItem } from './../../modeles';
 
 export interface IItemsService<T extends IItem> {
   getListe(): Array<T>;

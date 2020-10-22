@@ -1,4 +1,4 @@
-import { IItem } from '../../modeles/_interfaces/IItem';
+import { IItem } from './../../modeles';
 
 export abstract class AItemsService<T extends IItem> {
   public abstract getListe(): Array<T>;
