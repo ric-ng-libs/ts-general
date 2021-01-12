@@ -1,6 +1,6 @@
 {
   "name": "@ric-ng/ts-general",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Classes/Interfaces Typescript - générales. (mais Librairie créée au format: Angular Package)",
   "peerDependencies": {
     "@angular/common": "^8.2.14",
