@@ -1,5 +1,5 @@
 import { IComparator, IGenericList } from './../interfaces';
-import { FilterType } from './../types';
+import { FilterType, NumberOrNull, StringOrNull } from './../types';
 
 
 
@@ -33,6 +33,48 @@ export class GenericList<ElementType> implements IGenericList<ElementType> {
 
     getElements(): Array<ElementType> {
         const result: Array<ElementType> = this.elements;
+        return(result);
+    }
+
+    getElementByIndex(index: number): ElementType {
+        let result: ElementType;
+        this.checkValidIndex(index);
+        result = this.elements[index];
+        return(result);
+    }
+
+    private checkValidIndex(index: number): void {
+        const lastIndex: NumberOrNull = this.getLastIndex();
+        let errorMessage: StringOrNull = null;
+
+        if (lastIndex === null) {
+            errorMessage = `NO index can match, the list is empty`;
+
+        } else {
+            if (!this.isValidIndex(index)) {
+                errorMessage = `Out of range index: ${index}, should be in interval : [0, ${lastIndex}]`;
+            }
+
+        }
+
+        if (errorMessage !== null) {
+            throw new Error(errorMessage);
+        }
+    }
+    private isValidIndex(index: number): boolean {
+        const elementsNumber: number = this.getElementsNumber();
+        const result: boolean = (elementsNumber > 0  &&  index >= 0  &&  index < elementsNumber);
+        return(result);
+    }
+
+    private getLastIndex(): NumberOrNull {
+        const elementsNumber: number = this.getElementsNumber();
+        const result: NumberOrNull = (elementsNumber>0)? elementsNumber-1 : null;
+        return(result);
+    }
+
+    isEmpty(): boolean {
+        const result: boolean = (this.getElementsNumber() === 0);
         return(result);
     }
 

@@ -1,5 +1,5 @@
 import { IComparator } from './../interfaces';
-import { FilterType } from './../types';
+import { FilterType, NumberOrNull } from './../types';
 
 
 
@@ -10,6 +10,10 @@ export interface IGenericList<ElementType> {
     defineElements(elements: Array<ElementType>): boolean;
 
     getElements(): Array<ElementType>;
+
+    getElementByIndex(index: number): ElementType;
+
+    isEmpty(): boolean;
 
     getElementsMatchingFilter(filter: FilterType<ElementType>): Array<ElementType>;
 
