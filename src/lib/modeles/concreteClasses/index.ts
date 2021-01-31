@@ -7,3 +7,5 @@ export * from './StringComparator';
 export * from './GenericList';
 
 export * from './Item';
+
+export * from './Logger';
