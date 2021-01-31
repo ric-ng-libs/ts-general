@@ -1,5 +1,5 @@
 import { IComparator } from './../interfaces';
-import { FilterType, NumberOrNull } from './../types';
+import { FilterType } from './../types';
 
 
 
