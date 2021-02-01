@@ -7,3 +7,5 @@ export * from './IComparator';
 export * from './IStringComparator';
 
 export * from './Logger';
+
+export * from './IStringable';

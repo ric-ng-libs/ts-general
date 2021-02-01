@@ -1,10 +1,13 @@
-import { IToScreenLogger } from './../../interfaces';
-import { AStringsLogger } from './../../abstracts';
+import { IToScreenLogger, IStringable } from './../../interfaces';
+import { AStringablesLogger } from './../../abstracts';
 
-export class ToScreenLogger extends AStringsLogger implements IToScreenLogger {
+export class ToScreenLogger extends AStringablesLogger implements IToScreenLogger {
 
     outputToConsole(): IToScreenLogger {
-        console.log(`${this.getLogAsString()}`);
+        this.eachLine( (line: Array<IStringable>) => {
+            console.log(...line);
+        });        
+
         return(this);
     }
 

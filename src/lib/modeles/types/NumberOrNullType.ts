@@ -1,1 +1,3 @@
-export type NumberOrNull = number | null;
+import { TypeOrNull } from './TypeOrNullType';
+
+export type NumberOrNull = TypeOrNull<number>;

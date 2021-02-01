@@ -1,1 +1,3 @@
-export type StringOrNull = string | null;
+import { TypeOrNull } from './TypeOrNullType';
+
+export type StringOrNull = TypeOrNull<string>;

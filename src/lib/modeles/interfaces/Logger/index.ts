@@ -1,2 +1,2 @@
-export * from './IStringsLogger';
+export * from './IStringablesLogger';
 export * from './IToScreenLogger';

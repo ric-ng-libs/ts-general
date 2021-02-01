@@ -1,6 +1,6 @@
-import { IStringsLogger } from './IStringsLogger';
+import { IStringablesLogger } from './IStringablesLogger';
 
-export interface IToScreenLogger extends IStringsLogger {
+export interface IToScreenLogger extends IStringablesLogger {
     outputToConsole(): IToScreenLogger;
 
     outputToPopup(): IToScreenLogger;
