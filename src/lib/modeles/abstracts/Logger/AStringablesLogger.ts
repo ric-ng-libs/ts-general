@@ -2,7 +2,7 @@ import { IStringable, IStringablesLogger, IGenericList } from '../../interfaces'
 import { GenericList } from '../../concreteClasses/GenericList';
 
 export abstract class AStringablesLogger implements IStringablesLogger {
-    private static defaultIndentStep: number = 4;
+    private static defaultIndentStep: number = 6;
     private static defaultIndentChar: string = '.';
     private static linesSeparator: string = '\n';
     private static lineDataSeparator: string = ' '.repeat(3);
@@ -57,8 +57,8 @@ export abstract class AStringablesLogger implements IStringablesLogger {
         this.addLineAsArrayToLog(line);
         return(this);
     }
-    addLineSeparatorToLog(): IStringablesLogger {
-        this.addLineAsArrayToLog([ `${AStringablesLogger.linesSeparator}` ]);
+    addLineSeparatorToLog(number: number = 1): IStringablesLogger {
+        this.addLineAsArrayToLog([ `${AStringablesLogger.linesSeparator}`.repeat(number) ]);
         return(this);
     }
     

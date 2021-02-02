@@ -9,7 +9,7 @@ export interface IStringablesLogger {
     setIndentChar(indentChar: string): IStringablesLogger;
     
     addLineToLog(stringable: IStringable): IStringablesLogger;
-    addLineSeparatorToLog(): IStringablesLogger;    
+    addLineSeparatorToLog(number?: number): IStringablesLogger;    
     getLogAsString(): string;
     clearLog(): void;
 

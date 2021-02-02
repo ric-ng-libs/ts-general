@@ -9,3 +9,6 @@ export * from './GenericList';
 export * from './Item';
 
 export * from './Logger';
+
+
+export * from './NativeClassesEnhancement';

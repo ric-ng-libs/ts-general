@@ -9,3 +9,7 @@ export * from './IStringComparator';
 export * from './Logger';
 
 export * from './IStringable';
+
+
+//Particularité pour les fichiers qui normalement auraient dû être des .d.ts.
+import './NativeClassesEnhancement';
