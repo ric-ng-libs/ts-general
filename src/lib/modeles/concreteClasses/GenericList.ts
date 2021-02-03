@@ -292,16 +292,19 @@ export class GenericList<ElementType> implements IGenericList<ElementType> {
         if (fCallBack !== null) {
 
             let index: number = 0;
+            const lastIndex: number = this.getLastIndex();
             let callBackReturnedValue: CallBackReturnType;
             const isBreakLoopConditionFunction: boolean = (fBreakLoop !== null);
             for (const element of this.elements) {
-                callBackReturnedValue = fCallBack(element, index++);
+                callBackReturnedValue = fCallBack(element, index);
 
-                if (isBreakLoopConditionFunction) {
+                if (isBreakLoopConditionFunction && index !== lastIndex) {
                     if (fBreakLoop(callBackReturnedValue)) {
                         break;
                     }
                 }
+
+                index++;
             }        
 
         }
