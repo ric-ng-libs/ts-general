@@ -1,5 +1,7 @@
-import { IStringable, IStringablesLogger, IGenericList } from '../../interfaces';
+import { IStringable, IStringablesLogger, IStringablesLoggerLine, IGenericList } from '../../interfaces';
 import { GenericList } from '../../concreteClasses/GenericList';
+import { LoggerMessageType } from './../../enums';
+
 
 export abstract class AStringablesLogger implements IStringablesLogger {
     private static defaultIndentStep: number = 6;
@@ -7,14 +9,14 @@ export abstract class AStringablesLogger implements IStringablesLogger {
     private static linesSeparator: string = '\n';
     private static lineDataSeparator: string = ' '.repeat(3);
 
-    private outputBuffer: IGenericList< Array<IStringable> >;    
+    private outputBuffer: IGenericList< IStringablesLoggerLine >;    
 
     private indentStep: number;
     private indentChar: string;
     private currentIndent: number;
 
     constructor() {
-        this.outputBuffer = new GenericList< Array<IStringable> >();
+        this.outputBuffer = new GenericList< IStringablesLoggerLine >();
         this.setIndentStep(AStringablesLogger.defaultIndentStep);
         this.setIndentChar(AStringablesLogger.defaultIndentChar);
         this.currentIndent = 0;
@@ -49,16 +51,27 @@ export abstract class AStringablesLogger implements IStringablesLogger {
         return(result);
     }
 
-    addLineToLog(lineToLog: IStringable): IStringablesLogger {
-        const line: Array<IStringable> = (Array.isArray(lineToLog))? [...lineToLog] :  [lineToLog];
-        if (this.currentIndent > 0) {
-            line.unshift(this.getIndentString());
+    addLineToLog(
+        lineToLog: IStringable, 
+        messageType_: LoggerMessageType = LoggerMessageType.normal, 
+        autoIndent: boolean = true
+    ): IStringablesLogger {
+        const lineData: Array<IStringable> = (Array.isArray(lineToLog))? [...lineToLog] :  [lineToLog];
+
+        if (autoIndent && this.currentIndent > 0) {
+            lineData.unshift(this.getIndentString());
         }
-        this.addLineAsArrayToLog(line);
+
+        this.addLineAsArrayToLog({
+            data: lineData,
+            messageType: messageType_
+        });
         return(this);
     }
     addLineSeparatorToLog(number: number = 1): IStringablesLogger {
-        this.addLineAsArrayToLog([ `${AStringablesLogger.linesSeparator}`.repeat(number) ]);
+        this.addLineAsArrayToLog({
+            data: [ `${AStringablesLogger.linesSeparator}`.repeat(number) ]
+        });
         return(this);
     }
     
@@ -66,8 +79,8 @@ export abstract class AStringablesLogger implements IStringablesLogger {
         let result: string;
         const lines: Array<string> = [];
 
-        this.eachLine( (line: Array<IStringable>) => {
-            const lineAsString: string = line.join(AStringablesLogger.lineDataSeparator);
+        this.eachLine( (stringablesLoggerLine: IStringablesLoggerLine) => {
+            const lineAsString: string = stringablesLoggerLine.data.join(AStringablesLogger.lineDataSeparator);
             lines.push(lineAsString);
         });
 
@@ -75,9 +88,9 @@ export abstract class AStringablesLogger implements IStringablesLogger {
         return(result);
     }
 
-    protected eachLine(functionForEachLine: (line: Array<IStringable>) => void): void {
-        this.outputBuffer.each( (line: Array<IStringable>) => {
-            functionForEachLine(line);
+    protected eachLine(functionForEachLine: (stringablesLoggerLine: IStringablesLoggerLine) => void): void {
+        this.outputBuffer.each( (stringablesLoggerLine: IStringablesLoggerLine) => {
+            functionForEachLine(stringablesLoggerLine);
         }); 
         
     }
@@ -86,8 +99,9 @@ export abstract class AStringablesLogger implements IStringablesLogger {
         this.outputBuffer.clear();
     }
 
-    private addLineAsArrayToLog(lineAsArray: Array<IStringable>): void {
-        this.outputBuffer.addElement(lineAsArray);
+    private addLineAsArrayToLog(stringablesLoggerLine: IStringablesLoggerLine): void {
+        this.outputBuffer.addElement(stringablesLoggerLine);
     }
-    
+
+   
 }

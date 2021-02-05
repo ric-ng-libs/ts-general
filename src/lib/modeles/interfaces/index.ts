@@ -11,5 +11,8 @@ export * from './Logger';
 export * from './IStringable';
 
 
+export * from './HTML';
+
+
 //Particularité pour les fichiers qui normalement auraient dû être des .d.ts.
 import './NativeClassesEnhancement';

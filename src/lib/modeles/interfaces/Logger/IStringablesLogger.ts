@@ -1,5 +1,6 @@
 import { StringOrStringsArray } from '../../types';
 import { IStringable } from '../IStringable';
+import { LoggerMessageType } from './../../enums';
 
 export interface IStringablesLogger {
     
@@ -8,8 +9,8 @@ export interface IStringablesLogger {
     setIndentStep(indentStep: number): IStringablesLogger;
     setIndentChar(indentChar: string): IStringablesLogger;
     
-    addLineToLog(stringable: IStringable): IStringablesLogger;
-    addLineSeparatorToLog(number?: number): IStringablesLogger;    
+    addLineToLog(lineToLog: IStringable, messageType?: LoggerMessageType, autoIndent?: boolean): IStringablesLogger;
+    addLineSeparatorToLog(number?: number): IStringablesLogger;  
     getLogAsString(): string;
     clearLog(): void;
 

@@ -5,3 +5,7 @@ import './Number';
 import './Array';
 import './Object';
 import './Function';
+
+
+
+import './HTML';
