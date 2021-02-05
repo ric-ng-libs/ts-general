@@ -1,5 +1,8 @@
 // tslint:disable:no-string-literal
 
+import { HTMLFactory } from './../HTML';
+
+
 export default (() => {
 
     //Ajout de méthodes/membres static.
@@ -20,8 +23,17 @@ export default (() => {
             crReplacementString: string = String["crDefaultReplacementString"], 
             lfReplacementString: string = String["lfDefaultReplacementString"]
         ): string {
-            return( this.replace(/\n/g, crReplacementString).replace(/\r/g, lfReplacementString) );
+            const result: string = this.replace(/\n/g, crReplacementString).replace(/\r/g, lfReplacementString);
+            return(result);
+        },
+
+
+        toHTML(): string {
+            const htmlBR: string = HTMLFactory.createBr().outerHTML;
+            const result: string = this.replaceCRLFBy(htmlBR, htmlBR);
+            return(result);
         }
+
 
 
     });

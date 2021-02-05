@@ -1,6 +1,9 @@
 import { IToScreenLogger, IStringablesLoggerLine } from './../../interfaces';
+
+
 import { AStringablesLogger } from './../../abstracts';
 import { LoggerMessageType } from './../../enums/LoggerMessageType';
+
 
 
 export class ToScreenLogger extends AStringablesLogger implements IToScreenLogger {
@@ -39,9 +42,15 @@ export class ToScreenLogger extends AStringablesLogger implements IToScreenLogge
         return(this);
     }
 
+    outputToHTMLBody(): IToScreenLogger {
+        this.outputToHTMLElement( window.document.body );
+        return(this);
+    }    
 
-    
-    
-    // appendToHTMLElement
+    outputToHTMLElement(htmlElement: HTMLElement): IToScreenLogger {
+        const rawText: string = this.getLogAsString();
+        htmlElement.appendRawText(rawText);
+        return(this);
+    }
         
 }

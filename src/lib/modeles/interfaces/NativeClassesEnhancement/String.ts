@@ -4,7 +4,7 @@
 interface StringConstructor { //Pour les méthodes/membres  static ajoutés.
 
     crDefaultReplacementString: string;
-    lfDefaultReplacementString: string;   
+    lfDefaultReplacementString: string;  
     
 }
 
@@ -12,5 +12,7 @@ interface StringConstructor { //Pour les méthodes/membres  static ajoutés.
 interface String { //Pour les méthodes/membres  NON static ajoutés.
 
     replaceCRLFBy(crReplacementString?: string, lfReplacementString?: string): string;
+
+    toHTML(): string;
 
 }

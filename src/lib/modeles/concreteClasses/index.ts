@@ -10,5 +10,7 @@ export * from './Item';
 
 export * from './Logger';
 
+export * from './HTML';
+
 
 export * from './NativeClassesEnhancement';
