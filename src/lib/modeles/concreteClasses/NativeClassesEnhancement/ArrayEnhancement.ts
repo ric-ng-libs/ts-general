@@ -15,7 +15,7 @@ export default (() => {
 
         add10(): Array<number> {
             return(this.push(10));
-        }
+        },
 
 
     });

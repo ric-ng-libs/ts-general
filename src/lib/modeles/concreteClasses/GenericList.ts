@@ -284,6 +284,11 @@ export class GenericList<ElementType> implements IGenericList<ElementType> {
         return(result);
     }
 
+    getLastElement(): ElementType | null {
+        const result: ElementType = (this.isEmpty())? null : this.getElementByIndex(this.getLastIndex());
+        return(result);
+    }
+
 
     each<CallBackReturnType>( 
         fCallBack: ((element: ElementType, index?: number) => CallBackReturnType),

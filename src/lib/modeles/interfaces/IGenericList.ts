@@ -58,6 +58,8 @@ export interface IGenericList<ElementType> {
 
     getElementsNumber(): number;
 
+    getLastElement(): ElementType | null;    
+
     each<CallBackReturnType>( 
         fCallBack: ((element: ElementType, index?: number) => CallBackReturnType),
         fBreakLoop?: ((callBackReturnedValue: CallBackReturnType) => boolean)

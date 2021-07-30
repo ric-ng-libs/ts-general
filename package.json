@@ -1,12 +1,13 @@
 {
   "name": "@ric-ng/ts-general",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Classes/Interfaces Typescript - générales. (mais Librairie créée au format: Angular Package)",
   "peerDependencies": {
-    "@angular/common": "^8.2.14",
-    "@angular/core": "^8.2.14"
+    "@angular/common": "^12.1.0",
+    "@angular/core": "^12.1.0"
   },
   "dependencies": {
+    "tslib": "^2.2.0"
   },
   "repository" : {
     "type": "git",
